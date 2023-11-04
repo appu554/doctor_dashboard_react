@@ -209,7 +209,7 @@ const TotalGrowthBarChart = ({ isLoading }) => {
 
   const {logout } = useAuth0();
   const { getUserId, getAuthToken } = useAuthInfo();
-  // const [userId, setUserId] = useState(null);
+  const [userId, setUserId] = useState(null);
   const [authToken, setAuthToken] = useState(null);
 
 
