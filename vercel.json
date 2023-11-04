@@ -1,0 +1,5 @@
+{
+    "rewrites": [
+      { "source": "/free", "destination": "/index.html" }
+    ]
+  }
