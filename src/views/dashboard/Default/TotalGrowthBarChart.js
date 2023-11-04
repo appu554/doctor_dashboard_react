@@ -253,7 +253,7 @@ const TotalGrowthBarChart = ({ isLoading }) => {
     fetchData();
 
          // Define the GraphQL endpoint and headers
-         const endpoint = 'http://backend.cardiofit.in/v1/graphql'; // Replace with your GraphQL server's endpoint
+         const endpoint = 'https://backend.cardiofit.in/v1/graphql'; // Replace with your GraphQL server's endpoint
          const headers = {
            'Content-Type': 'application/json',
            'Authorization': `Bearer ${authToken}` ,
