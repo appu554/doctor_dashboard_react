@@ -449,7 +449,7 @@ const onMeetingLeave = () => {
         webcamEnabled: true,
         name: "C.V. Raman",
       }}
-      token={authToken}
+      token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiI0N2NhY2IzMy1lMDNjLTRiOGUtODBhNy05OTViMTUyMjc2ODgiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY5OTEwMTUzNiwiZXhwIjoxNjk5NzA2MzM2fQ.rR0Fci8YDKzg_94uqT7wQr0nGxvSSdBxldeMza9Xokc"
     >
       <MeetingConsumer>
         {() => (
