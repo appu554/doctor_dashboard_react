@@ -2,7 +2,7 @@
   "name": "berry-free-material-react-cra",
   "version": "3.3.2",
   "private": true,
-  "homepage": "https://berrydashboard.io/free",
+  "homepage": "https://doctor-dashboard-react.vercel.app/",
   "dependencies": {
     "@apollo/client": "^3.8.6",
     "@auth0/auth0-react": "^2.2.1",
