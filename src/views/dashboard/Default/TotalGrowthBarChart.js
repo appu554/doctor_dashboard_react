@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect,useMemo, useRef } from 'react';
+import { useState, useEffect, useRef,useMemo  } from 'react';
 import { useSelector } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useAuthInfo } from '../../../useAuthInfo';
@@ -75,6 +75,16 @@ function ParticipantView(props) {
   const { webcamStream, micStream, webcamOn, micOn, isLocal, displayName } =
     useParticipant(props.participantId);
 
+    const { screenShareStream, screenShareOn } = useParticipant(props.participantId);  
+
+    const screenStream = useMemo(() => {
+      if (screenShareOn && screenShareStream) {
+        const mediaStream = new MediaStream();
+        mediaStream.addTrack(screenShareStream.track);
+        return mediaStream;
+      }
+    }, [screenShareStream, screenShareOn]);
+
   const videoStream = useMemo(() => {
     if (webcamOn && webcamStream) {
       const mediaStream = new MediaStream();
@@ -102,14 +112,14 @@ function ParticipantView(props) {
   }, [micStream, micOn]);
 
   return (
-    <div key={props.participantId}>
+    <div>
       <p>
         Participant: {displayName} | Webcam: {webcamOn ? "ON" : "OFF"} | Mic:{" "}
         {micOn ? "ON" : "OFF"}
       </p>
-      <audio ref={micRef} autoPlay  muted={isLocal}>
-  <track kind="captions" />
-</audio>
+      <audio ref={micRef} autoPlay  muted={isLocal} >
+      <track kind="captions" />
+      </audio>
       {webcamOn && (
         <ReactPlayer
           //
@@ -122,17 +132,32 @@ function ParticipantView(props) {
           //
           url={videoStream}
           //
-          height={"200px"}
+          height={"300px"}
           width={"300px"}
           onError={(err) => {
             console.log(err, "participant video error");
           }}
         />
       )}
+      {screenShareOn && (
+        <ReactPlayer
+          playsInline
+          pip={false}
+          light={false}
+          controls={false}
+          muted={true} // you might want to mute the screen share by default
+          playing={true}
+          url={screenStream}
+          height={"300px"} // you may want to adjust the size for screen share
+          width={"300px"}
+          onError={(err) => {
+            console.log(err, "participant screen share error");
+          }}
+        />
+      )}
     </div>
   );
 }
-
 function Controls() {
   const { leave, toggleMic, toggleWebcam } = useMeeting();
   return (
@@ -140,14 +165,16 @@ function Controls() {
       <button onClick={() => leave()}>Leave</button>
       <button onClick={() => toggleMic()}>toggleMic</button>
       <button onClick={() => toggleWebcam()}>toggleWebcam</button>
+
     </div>
   );
 }
 
 function MeetingView(props) {
   const [joined, setJoined] = useState(null);
-  const { join } = useMeeting();
+  const { join} = useMeeting();
   const { participants } = useMeeting({
+    onPresenterChanged,
     onMeetingJoined: () => {
       setJoined("JOINED");
     },
@@ -159,6 +186,19 @@ function MeetingView(props) {
     setJoined("JOINING");
     join();
   };
+
+ 
+   //Callback for when the presenter changes
+   function onPresenterChanged(presenterId) {
+    if(presenterId){
+      console.log(presenterId, "started screen share");
+    }else{
+      console.log("someone stopped screen share");
+    }
+  }
+
+
+
 
   return (
     <div className="container">
@@ -178,6 +218,7 @@ function MeetingView(props) {
       ) : (
         <button onClick={joinMeeting}>Join</button>
       )}
+    
     </div>
   );
 }
