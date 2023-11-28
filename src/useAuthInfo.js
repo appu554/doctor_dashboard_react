@@ -1,5 +1,6 @@
 // useAuthInfo.js
 import { useAuth0 } from '@auth0/auth0-react';
+import { useCallback } from 'react';
 
 export const useAuthInfo = () => {
   const { user, getIdTokenClaims , isAuthenticated } = useAuth0();
@@ -8,7 +9,7 @@ export const useAuthInfo = () => {
     return isAuthenticated ? user.sub : null;
   };
 
-  const getAuthToken = async () => {
+  const getAuthToken = useCallback(async () => {
     if (isAuthenticated) {
       try {
         const idToken = await getIdTokenClaims();
@@ -20,7 +21,7 @@ export const useAuthInfo = () => {
     } else {
       return null;
     }
-  };
+  });
 
   return {
     getUserId,

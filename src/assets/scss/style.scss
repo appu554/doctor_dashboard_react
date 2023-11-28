@@ -4,6 +4,10 @@
 // third-party
 @import '~react-perfect-scrollbar/dist/css/styles.css';
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // ==============================|| LIGHT BOX ||============================== //
 .fullscreen .react-images__blanket {
   z-index: 1200;
@@ -125,4 +129,40 @@
   75% {
     transform: translateX(10px);
   }
+}
+
+
+//================= TAB ================= //
+.tabs {
+  button {
+    padding: 10px;
+    margin-right: 5px;
+    border: none;
+    background-color: #eee;
+    cursor: pointer;
+    &:hover {
+      background-color: #ddd;
+    }
+    &.active {
+      background-color: #ccc;
+      cursor: default;
+      &:hover {
+        background-color: #ccc;
+      }
+    }
+  }
+}
+
+.tab-content {
+  > div {
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+}
+
+.disabled-slot {
+  opacity: 0.5;
+  pointer-events: none;
 }

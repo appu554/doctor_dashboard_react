@@ -22,10 +22,8 @@ const other = {
       id: 'logout',
       title: 'Logout',
       type: 'item',
-     
+      url: '/utils/util-color',
       icon: icons.IconHelp,
-      external: true,
-      target: true
     }
   ]
 };

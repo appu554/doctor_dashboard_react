@@ -1,12 +1,15 @@
 // assets
-import { IconTypography, IconPalette, IconShadow, IconWindmill } from '@tabler/icons';
+import { IconMan, IconPalette, IconShadow,IconVideo,IconDeviceTv,IconWallet,IconDevices } from '@tabler/icons';
 
 // constant
 const icons = {
-  IconTypography,
+  IconMan,
   IconPalette,
   IconShadow,
-  IconWindmill
+  IconDevices,
+  IconVideo,
+  IconDeviceTv,
+  IconWallet
 };
 
 // ==============================|| UTILITIES MENU ITEMS ||============================== //
@@ -18,26 +21,42 @@ const utilities = {
   children: [
     {
       id: 'util-patient',
-      title: 'Patient',
+      title: 'Continuous Monitoring ',
       type: 'item',
-      url: '/utils/util-typography',
-      icon: icons.IconTypography,
+      url: 'continuous_monitoring/all',
+      icon: icons.IconDeviceTv,
+      breadcrumbs: false
+    },
+    {
+      id: 'util-TeleCall',
+      title: 'Tele Consultation',
+      type: 'item',
+      url: 'TeleCall/view',
+      icon: icons.IconVideo,
+      breadcrumbs: false
+    },
+    {
+      id: 'util-timeslot',
+      title: 'Time Slot',
+      type: 'item',
+      url: 'TimeSlot/all',
+      icon: icons.IconVideo,
       breadcrumbs: false
     },
     {
       id: 'util-wallet',
       title: 'Wallet',
       type: 'item',
-      url: '/utils/util-color',
-      icon: icons.IconPalette,
+      url: '/wallet/view',
+      icon: icons.IconWallet,
       breadcrumbs: false
     },
     {
       id: 'util-devices',
       title: 'Devices',
       type: 'item',
-      url: '/utils/util-shadow',
-      icon: icons.IconShadow,
+      url: '/Device/all',
+      icon: icons.IconDevices,
       breadcrumbs: false
     },
     // {

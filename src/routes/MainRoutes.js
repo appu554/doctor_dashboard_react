@@ -16,6 +16,11 @@ const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons
 
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
+//Our Views
+const PatientPage = Loadable(lazy(() => import('views/dashboard/Default/PatientView')));
+const WalletPage = Loadable(lazy(() => import('views/dashboard/Default/Wallet')));
+const DevicePage = Loadable(lazy(() => import('views/dashboard/Default/DevicesView')));
+const TimeSlotPage = Loadable(lazy(() => import('views/dashboard/Default/TimeSlot')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -27,6 +32,47 @@ const MainRoutes = {
       path: '/',
       element: <DashboardDefault />
     },
+    //our view
+    {
+      path: 'continuous_monitoring',
+      children: [
+        {
+          path: 'all',
+          element: <PatientPage />
+        }
+      ]
+    },
+
+    {
+      path: 'wallet',
+      children: [
+        {
+          path: 'view',
+          element: <WalletPage />
+        }
+      ]
+    },
+
+    {
+      path: 'device',
+      children: [
+        {
+          path: 'all',
+          element: <DevicePage />
+        }
+      ]
+    },
+    {
+      path: 'timeslot',
+      children: [
+        {
+          path: 'all',
+          element: <TimeSlotPage />
+        }
+      ]
+    },
+
+    // ends here
     {
       path: 'dashboard',
       children: [
